@@ -9,3 +9,4 @@ from django.contrib.auth.models import User
 
 class Creator(models.Model):
     user=models.ForeignKey(User, on_delete=models.CASCADE)
+
