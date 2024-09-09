@@ -36,7 +36,7 @@ class Task(models.Model):
     description = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     creator = models.ForeignKey(Creator, on_delete=models.CASCADE)  # Add the Creator foreign key
-    category = models.ForeignKey(TaskCategory, on_delete=models.CASCADE)
+    category = models.ForeignKey(TaskCategory, on_delete=models.CASCADE, default='Applications')
 
     def formatted_created_at(self):
         """Return the created_at date in DD/MM/YYYY format."""
