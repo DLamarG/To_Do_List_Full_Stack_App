@@ -22,3 +22,14 @@ class TaskCategoryView(generics.ListAPIView):
         task_category = get_object_or_404(TaskCategory, category=category)
         # Filter tasks by the given category and the logged-in user
         return Task.objects.filter(category=task_category, creator__user=self.request.user)
+
+
+
+class TaskCreateView(generics.CreateAPIView):
+    queryset = Task.objects.all()
+    serializer_class = TaskSerializer
+    #permission_classes = [IsAuthenticated]  # Ensure the user is authenticated to create tasks
+
+    def perform_create(self, serializer):
+        """ Automatically set the creator to the logged-in user. """
+        serializer.save(creator=self.request.user.creator)
