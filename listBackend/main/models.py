@@ -12,7 +12,7 @@ class TaskCategory(models.Model):
         (6, 'Projects'),
     ]
     id = models.PositiveSmallIntegerField(choices=CATEGORY_CHOICES, primary_key=True)
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=255)
 
     def __str__(self):
         return self.get_id_display()
