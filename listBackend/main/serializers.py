@@ -1,17 +1,26 @@
 from rest_framework import serializers
 from .models import Task, TaskCategory
 
+# Serializer for TaskCategory
+class TaskCategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TaskCategory
+        fields = ['id', 'name']
+
+# Serializer for Task
 class TaskSerializer(serializers.ModelSerializer):
-    formatted_created_at = serializers.ReadOnlyField()
+    category = TaskCategorySerializer(read_only=True)
+    user = serializers.ReadOnlyField(source='user.username')
 
     class Meta:
         model = Task
-        fields = ['title', 'description', 'created_at', 'formatted_created_at', 'creator', 'category']
+        fields = ['id', 'title', 'description', 'category', 'user', 'created_at', 'due_date']
 
-    
     def create(self, validated_data):
-        """ Override the create method to associate the task with the logged-in user. """
-        user = self.context['request'].user
-        creator = user.creator  # Assuming the user has an associated Creator object
-        task = Task.objects.create(creator=creator, **validated_data)
+        request = self.context.get('request')
+        user = request.user
+        category_id = validated_data.pop('category_id')
+        category = TaskCategory.objects.get(id=category_id)
+        task = Task.objects.create(user=user, category=category, **validated_data)
         return task
+
