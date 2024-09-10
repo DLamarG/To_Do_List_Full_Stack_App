@@ -24,3 +24,10 @@ class TaskSerializer(serializers.ModelSerializer):
         task = Task.objects.create(user=user, category=category, **validated_data)
         return task
 
+
+class TaskSerializer(serializers.ModelSerializer):
+    category_display = serializers.CharField(source='get_category_display', read_only=True)
+
+    class Meta:
+        model = Task
+        fields = ['id', 'title', 'description', 'category', 'category_display', 'created_at']
