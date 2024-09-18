@@ -13,11 +13,7 @@ TITLE_CHOICES = {
 }
 
 
-
-
-
-
 class Category(models.Model):
     title = models.CharField(max_length=15, choices=TITLE_CHOICES)
-    details=models.TextField(null=True, max_length=500)
+    # details=models.TextField(null=True, max_length=500)
     category_id=models.CharField(primary_key=True)
