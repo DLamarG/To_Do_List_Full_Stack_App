@@ -11,7 +11,7 @@ class Author(models.Model):
     my_task = models.ManyToManyField(Task, related_name='my_task', blank=True)
 
 
-    def add_to_recipes(self, task_title, task_details, task_id):
+    def add_to_task(self, task_title, task_details, task_id):
         if not self.my_task.filter(task_title=task_title).exists():
             recipe=Task.objects.create(task_id=task_id, task_title=task_title, task_details=task_details)
             self.my_task.add(recipe)
