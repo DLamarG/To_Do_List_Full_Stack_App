@@ -13,8 +13,8 @@ class Author(models.Model):
 
     def add_to_task(self, task_title, task_details, task_id):
         if not self.my_task.filter(task_title=task_title).exists():
-            recipe=Task.objects.create(task_id=task_id, task_title=task_title, task_details=task_details)
-            self.my_task.add(recipe)
+            task=Task.objects.create(task_id=task_id, task_title=task_title, task_details=task_details)
+            self.my_task.add(task)
             return {'message': 'task added to your list of tasks'}
         else:
             return {'message': 'task already exist'}
