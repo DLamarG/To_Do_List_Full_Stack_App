@@ -7,4 +7,4 @@ from . import models
 class CategorySerialzer(serializers.ModelSerializer):
     class Meta:
         model=models.Category
-        fields=['title', 'category_id']
+        fields=['category_title']

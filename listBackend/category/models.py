@@ -14,5 +14,5 @@ TITLE_CHOICES = {
 
 
 class Category(models.Model):
-    title = models.CharField(max_length=15, choices=TITLE_CHOICES)
+    category_title = models.CharField(max_length=15, choices=TITLE_CHOICES)
     
