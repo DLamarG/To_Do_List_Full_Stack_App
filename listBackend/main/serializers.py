@@ -5,4 +5,4 @@ from . import models
 class AuthorSerializer(serializers.ModelSerializer):
     class Meta:
         model=models.Author
-        fields=['user', 'my_task']
+        fields=['my_task', 'user']

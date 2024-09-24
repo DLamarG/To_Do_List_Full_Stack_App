@@ -12,13 +12,13 @@ TITLE_CHOICES = {
     "D": "Development",
 }
 
-SHIRT_SIZES = {
-        "S": "Small",
-        "M": "Medium",
-        "L": "Large",
-    }
+# SHIRT_SIZES = {
+#         "S": "Small",
+#         "M": "Medium",
+#         "L": "Large",
+#     }
 
 
 class Category(models.Model):
-    category_title = models.CharField(max_length=15, choices=TITLE_CHOICES)
+    category_title = models.CharField(max_length=1, choices=TITLE_CHOICES)
     
